@@ -2,8 +2,7 @@
 	import { ModeWatcher } from 'mode-watcher';
 
 	import { Toaster } from '$lib/components/ui/sonner';
-    import { SidebarInset, SidebarProvider, SidebarTrigger } from "$lib/components/ui/sidebar";
-    import AppSidebar from "$lib/components/custom/app-sidebar.svelte";
+    import { SidebarInset, SidebarProvider } from "$lib/components/ui/sidebar";
 	
 	import '../app.css';
 	import Header from '$lib/components/custom/header.svelte';
@@ -15,6 +14,7 @@
 
 		switch(event.key) {
 			case 'k':
+			case 'K':
 				if (event.ctrlKey) {
 					event.preventDefault();
 					refSearchbar?.focus();
@@ -33,10 +33,7 @@
 <Toaster />
 <ModeWatcher />
 
-<SidebarProvider>
-	<Header bind:searchbar={refSearchbar} />
-    <AppSidebar />
-    <SidebarInset class="top-16">
-		{@render children()}
-    </SidebarInset>
-</SidebarProvider>
+<Header bind:searchbar={refSearchbar} />
+<span class="h-screen pt-16 flex">
+	{@render children()}
+</span>
